@@ -1,6 +1,7 @@
 package tobyspring.helloboot;
 
 import org.apache.catalina.startup.Tomcat;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
@@ -28,29 +29,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @Configuration
 @ComponentScan
 public class HellobootApplication {
+    @Bean
+    public ServletWebServerFactory servletWebServerFactory() {
+        return new TomcatServletWebServerFactory();
+    }
+    @Bean
+    public DispatcherServlet dispatcherServlet() {
+        return new DispatcherServlet();
+    }
+
     public static void main(String[] args) {
-        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext() {
-            @Override
-            protected void onRefresh() {
-                super.onRefresh();
-
-                ServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();
-                WebServer webServer = tomcatServletWebServerFactory.getWebServer(
-                        servletContext -> {
-                            servletContext.addServlet("dispatcherServlet", new DispatcherServlet(this))
-                                            .addMapping("/*");
-                        }
-                );
-                webServer.start();
-            }
-        };
-        applicationContext.register(HellobootApplication.class);
-        applicationContext.refresh();
-
-    }// main
+        SpringApplication.run(HellobootApplication.class, args);
+    }
 
 }
