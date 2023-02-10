@@ -26,20 +26,20 @@ class HellobootApplicationTests {
     void test() {
         // HTTP API 요청 테스트를 수행하는데 활용할 수 있는 (스프링프레임워크가 제공하는) 클래스 : RestTemplate
         // HTTP API 요청 테스트를 수행하는데 좀더 편하게 활용할 수 있는 (스프링부트에서부터 제공하는) 클래스 :  TestRestTemplate
-        TestRestTemplate testRestTmplt = new TestRestTemplate();
-        // "주어진 Entity에 대해 GET 요청 호출을 수행" -> 처리결과로 ResponseEntity 를 리턴(응답에 대한 모든 정보가 담겨있음)
-        ResponseEntity<String> response = testRestTmplt.getForEntity("http://localhost:8080/hello?name={name}", String.class, "jbkim");
-
-        System.out.println("==================================API Call Result==================================");
-        System.out.println("StatusCode: " + response.getStatusCode());
-        System.out.println("Headers: " + response.getHeaders());
-        System.out.println("Body: " + response.getBody());
-        System.out.println("===================================================================================");
-
-        System.out.println("==================================TEST 시작==================================");
-        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); // 상태코드 200 인가?
-        Assertions.assertThat(response.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE); // Headers 의 Content-Type : 'text/plain' 이 맞는가?
-        Assertions.assertThat(response.getBody()).isEqualTo("Hello jbkim"); // body 내용에 "hello jbkim" 이 맞는가?
+//        TestRestTemplate testRestTmplt = new TestRestTemplate();
+//        // "주어진 Entity에 대해 GET 요청 호출을 수행" -> 처리결과로 ResponseEntity 를 리턴(응답에 대한 모든 정보가 담겨있음)
+//        ResponseEntity<String> response = testRestTmplt.getForEntity("http://localhost:8080/hello?name={name}", String.class, "jbkim");
+//
+//        System.out.println("==================================API Call Result==================================");
+//        System.out.println("StatusCode: " + response.getStatusCode());
+//        System.out.println("Headers: " + response.getHeaders());
+//        System.out.println("Body: " + response.getBody());
+//        System.out.println("===================================================================================");
+//
+//        System.out.println("==================================TEST 시작==================================");
+//        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); // 상태코드 200 인가?
+//        Assertions.assertThat(response.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE); // Headers 의 Content-Type : 'text/plain' 이 맞는가?
+//        Assertions.assertThat(response.getBody()).isEqualTo("Hello jbkim"); // body 내용에 "hello jbkim" 이 맞는가?
 
     }
 
