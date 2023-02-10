@@ -30,16 +30,16 @@ class HellobootApplicationTests {
         // "주어진 Entity에 대해 GET 요청 호출을 수행" -> 처리결과로 ResponseEntity 를 리턴(응답에 대한 모든 정보가 담겨있음)
         ResponseEntity<String> response = testRestTmplt.getForEntity("http://localhost:8080/hello?name={name}", String.class, "jbkim");
 
-//        System.out.println("==================================API Call Result==================================");
-//        System.out.println("StatusCode: " + response.getStatusCode());
-//        System.out.println("Headers: " + response.getHeaders());
-//        System.out.println("Body: " + response.getBody());
-//        System.out.println("===================================================================================");
-//
-//        System.out.println("==================================TEST 시작==================================");
-//        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); // 상태코드 200 인가?
-//        Assertions.assertThat(response.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE); // Headers 의 Content-Type : 'text/plain' 이 맞는가?
-//        Assertions.assertThat(response.getBody()).isEqualTo("Hello jbkim"); // body 내용에 "hello jbkim" 이 맞는가?
+        System.out.println("==================================API Call Result==================================");
+        System.out.println("StatusCode: " + response.getStatusCode());
+        System.out.println("Headers: " + response.getHeaders());
+        System.out.println("Body: " + response.getBody());
+        System.out.println("===================================================================================");
+
+        System.out.println("==================================TEST 시작==================================");
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); // 상태코드 200 인가?
+        Assertions.assertThat(response.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE); // Headers 의 Content-Type : 'text/plain' 이 맞는가?
+        Assertions.assertThat(response.getBody()).isEqualTo("Hello jbkim"); // body 내용에 "hello jbkim" 이 맞는가?
 
     }
 
