@@ -11,19 +11,17 @@ import java.util.Objects;
 @RestController
 public class HelloController {
     private final HelloService helloService;
-    private final ApplicationContext applicationContext;
 
-    // 굳이 빈 라이프사이클 메서드 setApplication() 를 사용해 applicationContext 필드를 초기화 하지 않고도,
-    // 생성자에서 applicationContext 필드를 초기화하도록 할 수 있다. => 이게 좀더 현대적인 스프링 방식임.
-    public HelloController(HelloService helloService, ApplicationContext applicationContext) {
+    public HelloController(HelloService helloService) {
         this.helloService = helloService;
-        this.applicationContext = applicationContext;
-        System.out.println(applicationContext);
     }
 
     @GetMapping("/hello")
     public String hello(String name) {
-        return helloService.sayHello(Objects.requireNonNull(name));
+        if(name == null || name.trim().length() == 0) throw new IllegalArgumentException(); // 'IllegalArgumentException' : 파라미터로 illegal 하거나 적절치않은 argument를 받았을 때 주로 발생시키는 Exception (500 대 에러임;  )
+
+        return helloService.sayHello(name);
+//        return helloService.sayHello(Objects.requireNonNull(name)); // Objects.requireNonNull(obj) : obj 가 null 일 경우 'NullPointerException' 을 던짐. null 이 아니면 그 obj값을 리턴함
     }
 
 }
