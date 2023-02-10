@@ -40,6 +40,7 @@ class HellobootApplicationTests {
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK); // 상태코드 200 인가?
         Assertions.assertThat(response.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE); // Headers 의 Content-Type : 'text/plain' 이 맞는가?
         Assertions.assertThat(response.getBody()).isEqualTo("Hello jbkim"); // body 내용에 "hello jbkim" 이 맞는가?
+
     }
 
 }
