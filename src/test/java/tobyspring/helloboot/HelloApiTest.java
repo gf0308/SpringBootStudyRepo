@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.*;
 
 public class HelloApiTest {
-
     @DisplayName("HTTP API 호출 결과 응답 내용을 출력하는 메서드")
     static void printResponse(ResponseEntity<String> res) {
         System.out.println("==================================API Call Result==================================");
@@ -29,6 +28,8 @@ public class HelloApiTest {
         ResponseEntity<String> res =
                 rest.getForEntity("http://localhost:8080/hello?name={name}", String.class, "Spring");
 
+        printResponse(res);
+
         assertThat(res.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE);
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(res.getBody()).isEqualTo("*Hello Spring*");
@@ -42,7 +43,7 @@ public class HelloApiTest {
         ResponseEntity<String> res =
                 rest.getForEntity("http://localhost:8080/hello?name=", String.class);
 
-        printResponse(res);
+//        printResponse(res);
 
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR); // 'INTERNAL_SERVER_ERROR' : 서버내부에러(서버 내부에서 Exception을 던진 경우) : 500 에러
     }

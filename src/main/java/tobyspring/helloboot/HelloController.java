@@ -23,7 +23,6 @@ public class HelloController {
         // 근데 실제로 이런 클라이언트로부터 넘어온 파라미터가 잘못된(illegal한) 케이스일 경우를 체크할 때는 이에 대한 적절한 Exception은 사실 400대 에러다.
         // 500대 에러는 서버에 아예 기능이 없거나, 로직이 있는데 버그가 있거나 해서 발생하는 심각한 수준의 서버 내부 에러일 때 발생시키는게 적절하다.
 
-
         return helloService.sayHello(name);
 //        return helloService.sayHello(Objects.requireNonNull(name)); // Objects.requireNonNull(obj) : obj 가 null 일 경우 'NullPointerException' 을 던짐. null 이 아니면 그 obj값을 리턴함
     }

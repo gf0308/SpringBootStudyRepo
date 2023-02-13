@@ -9,7 +9,8 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 
-@Configuration // "이 클래스는 : 스프링 컨테이너가 사용할 Bean을 생성해 리턴하는 메서드를 가진(팩토리 메서드를 가진) 클래스다" (그것도 구성(configuration)용 빈들을 생성해 토해내는 메서드를 가진 클래스다) : @Configuration
+//@Configuration //
+// "이 클래스는 : 스프링 컨테이너가 사용할 Bean을 생성해 리턴하는 메서드를 가진(팩토리 메서드를 가진) 클래스다" (그것도 구성(configuration)용 빈들을 생성해 토해내는 메서드를 가진 클래스다) : @Configuration
 public class HellobootApplication5 {
 /*
     @Bean // 스프링컨테이너의 Bean으로 사용될 것이다.
