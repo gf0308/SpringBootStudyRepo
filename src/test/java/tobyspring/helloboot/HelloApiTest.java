@@ -12,14 +12,6 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.*;
 
 public class HelloApiTest {
-    @DisplayName("HTTP API 호출 결과 응답 내용을 출력하는 메서드")
-    static void printResponse(ResponseEntity<String> res) {
-        System.out.println("==================================API Call Result==================================");
-        System.out.println("StatusCode: " + res.getStatusCode());
-        System.out.println("Headers: " + res.getHeaders());
-        System.out.println("Body: " + res.getBody());
-        System.out.println("===================================================================================");
-    }
 
     @Test
     void helloApi() {
@@ -28,7 +20,7 @@ public class HelloApiTest {
         ResponseEntity<String> res =
                 rest.getForEntity("http://localhost:8080/hello?name={name}", String.class, "Spring");
 
-        printResponse(res);
+//        printResponse(res);
 
         assertThat(res.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE);
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -48,4 +40,13 @@ public class HelloApiTest {
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR); // 'INTERNAL_SERVER_ERROR' : 서버내부에러(서버 내부에서 Exception을 던진 경우) : 500 에러
     }
 
+
+    @DisplayName("HTTP API 호출 결과 응답 내용을 출력하는 메서드")
+    static void printResponse(ResponseEntity<String> res) {
+        System.out.println("==================================API Call Result==================================");
+        System.out.println("StatusCode: " + res.getStatusCode());
+        System.out.println("Headers: " + res.getHeaders());
+        System.out.println("Body: " + res.getBody());
+        System.out.println("===================================================================================");
+    }
 }

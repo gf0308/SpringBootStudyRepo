@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  @SpringBootTest : "이 테스트 클래스 내에서 수행되는 테스트케이스들은, 스프링부트 기반 애플리케이션의 기능에 대한 테스트를 수행하는 것이다" 라는 의미
   -> 때문에 테스트하는 애플리케이션이 스프링부트애플리케이션이 아닌 상태인데 테스트클래스에 @SpringBootTest를 붙여놓는다면, 해당 애플리케이션이 스프링부트 애플리케이션이 아니기 때문에 발생하는 에러가 발생할 것이다.
@@ -24,6 +27,35 @@ class HellobootApplicationTests {
 
     @Test
     void test() {
+
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        Integer[] intArr = new Integer[10];
+        Integer[] integers = list.toArray(intArr);
+//        Integer[] integers = list.toArray(new Integer[0]);
+
+        System.out.println("=====================================");
+//        System.out.println("strings.length : " + strings.length);
+//        System.out.println("strings : " + strings.length);
+//        System.out.println("strings.length : " + strings.length);
+//        System.out.println("strings.length : " + strings.length);
+        System.out.println("=====================================");
+        // toArray() -> Params: a – the array into which the elements of this list are to be stored, if it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose.
+
+
+
+
+
+
+
+
+
+
         // HTTP API 요청 테스트를 수행하는데 활용할 수 있는 (스프링프레임워크가 제공하는) 클래스 : RestTemplate
         // HTTP API 요청 테스트를 수행하는데 좀더 편하게 활용할 수 있는 (스프링부트에서부터 제공하는) 클래스 :  TestRestTemplate
 //        TestRestTemplate testRestTmplt = new TestRestTemplate();
