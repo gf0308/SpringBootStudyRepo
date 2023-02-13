@@ -1,13 +1,11 @@
 package tobyspring.config;
 
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.boot.context.annotation.ImportCandidates;
 import org.springframework.context.annotation.DeferredImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 public class MyAutoConfigImportSelector implements DeferredImportSelector { // ImportSelector 를 구현한 구체클래스 중 하나인 'DeferredImportSelector'
 
@@ -38,7 +36,7 @@ public class MyAutoConfigImportSelector implements DeferredImportSelector { // I
 //        ImportCandidates.load(myAutoConfiguration.class, classLoader).forEach(candidate -> autoConfigs.add(candidate));
         // 이를 '메서드 레퍼런스 표식(::)'을 사용하면 더 간결하게 줄일 수 있다.
         List<String> autoConfigs = new ArrayList<>();
-        ImportCandidates.load(myAutoConfiguration.class, classLoader).forEach(autoConfigs::add); // "forEach 로 나오는 매 요소를, autoConfigs 오브젝트 안의 add란 메서드에 대해 적용을 해줘라"
+        ImportCandidates.load(MyAutoConfiguration.class, classLoader).forEach(autoConfigs::add); // "forEach 로 나오는 매 요소를, autoConfigs 오브젝트 안의 add란 메서드에 대해 적용을 해줘라"
 
         return autoConfigs.toArray(new String[0]);
     }
