@@ -1,4 +1,4 @@
-package tobyspring.helloboot;
+package tobyspring.hellbootbackup;
 
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.DispatcherServlet;
 
-@Configuration
+//@Configuration
 public class Config {
 
-    @Bean
+//    @Bean
     public ServletWebServerFactory servletWebServerFactory() {
         return new TomcatServletWebServerFactory();
     }
-    @Bean
+//    @Bean
     public DispatcherServlet dispatcherServlet() {
         return new DispatcherServlet();
     }

@@ -25,8 +25,8 @@ import java.lang.annotation.Target;
 
 class HelloControllerTest {
 
-//    @Test
-    @FastUnitTest
+    @Test
+//    @FastUnitTest
     void helloController() {
         HelloController helloController = new HelloController((HelloService) name -> name);
 

@@ -1,4 +1,4 @@
-package tobyspring.helloboot;
+package tobyspring.hellbootbackup;
 
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import tobyspring.helloboot.HelloController;
+import tobyspring.helloboot.SimpleHelloService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
