@@ -1,6 +1,7 @@
 package tobyspring.study;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -38,6 +39,57 @@ public class GenericTest {
 
     }
 
+    @Test
+    void test2() {
+        AnimalList<Dog> animalList = new AnimalList<Dog>();
+//        Dog dog1 = new Dog();
+//        animalList.add(dog1);
+        animalList.add(new Dog());
+        assertThat(animalList.get(0).getBloodType()).isEqualTo("Warm");
+        assertThat(animalList.get(0).getCrySound()).isEqualTo("멍멍");
+        assertThat(animalList.size()).isEqualTo(1);
+//        animalList.remove(dog1);
+        animalList.remove(0);
+        assertThat(animalList.size()).isEqualTo(0);
+    }
+
+    @DisplayName("제네릭의 와일드카드 ? 를 테스트하는 테스트")
+    @Test
+    void test3() {
+        // 와일드카드 ? : 어떤 타입도 다 받을 수 있게 허용. '모든 타입' / '메서드'에서만 사용가능?
+        // ex)
+        // class MyClass<?>(); => "모든 타입도 내부객체로 투입가능하다."
+        // class MyClass<? extends MyClassParent>(); => "MyClassParent 클래스와 이를 상속한 자식 클래스에 해당하는 모든 타입이 내부객체로 투입가능하다."
+        // class MyClass<? super MyClassAncestor>(); => "MyClassAncestor 클래스와 MyClassAncestor의 조상클래스에 해당하는 모든 타입이 내부객체로 투입가능하다."
+
+        AnimalList<Dog> dogAnimalList = new AnimalList<>();
+        dogAnimalList.add(new Dog());
+        assertThat(WildcardTestMethodClass.cryingAnimalList(dogAnimalList)).isEqualTo("멍멍"); // true
+    }
+
+}
+
+
+
+class WildcardTestMethodClass {
+    public static String cryingAnimalList(AnimalList<? extends LandAnimal> al) {
+        LandAnimal la = al.get(0);
+        return la.getCrySound();
+    }
+}
+
+
+
+interface WarmBlood { String getBloodType(); }
+
+class AnimalList<T extends LandAnimal & WarmBlood> {
+    ArrayList<T> al = new ArrayList<T>();
+
+    void add(T animal) { al.add(animal); }
+    T get(int index) { return al.get(index); }
+    boolean remove(T animal) { return al.remove(animal); }
+    void remove(int index) { al.remove(index); }
+    int size() { return al.size(); }
 }
 
 
@@ -92,7 +144,12 @@ class Cat extends LandAnimal {
     }
 }
 
-class Dog extends LandAnimal {
+class Dog extends LandAnimal implements WarmBlood {
+    @Override
+    public String getBloodType() {
+        return "Warm";
+    }
+
     @Override
     public String getCrySound() {
         return "멍멍";
