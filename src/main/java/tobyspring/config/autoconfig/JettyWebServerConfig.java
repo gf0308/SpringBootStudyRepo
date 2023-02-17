@@ -1,5 +1,6 @@
 package tobyspring.config.autoconfig;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
@@ -19,6 +20,7 @@ import tobyspring.config.MyAutoConfiguration;
 public class JettyWebServerConfig {
 
     @Bean("jettyServletWebServerFactory")
+    @ConditionalOnMissingBean// "이 빈(즉, 'ServletWebServerFactory' 빈)이 현재 스프링컨테이너에 없을 경우(Missing)에만 이 빈을 등록한다"는 Conditional 애노테이션
     public ServletWebServerFactory servletWebServerFactory() {
         return new JettyServletWebServerFactory();
     }
